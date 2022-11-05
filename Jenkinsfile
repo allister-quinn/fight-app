@@ -9,13 +9,13 @@ pipeline {
         stage("build & SonarQube analysis") {
             steps {
                 withSonarQubeEnv('sonarqube') {
-                    sh 'mvn -f fight/pom.xml clean package sonar:sonar -Dsonar.host.url=http://sonarqube:9000 -Dsonar.login=admin -Dsonar.password=allister-dev'
+                    sh 'mvn -f pom.xml clean package sonar:sonar -Dsonar.host.url=http://sonarqube:9000 -Dsonar.login=admin -Dsonar.password=allister-dev'
                 }
             }
         }
         stage('Build') { 
             steps {
-                sh 'mvn -f fight/pom.xml -B -DskipTests clean install' 
+                sh 'mvn -f pom.xml -B -DskipTests clean install' 
             }
         }
     }
